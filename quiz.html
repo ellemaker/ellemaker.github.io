@@ -5,27 +5,51 @@
 	<title>Test</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="css/slick.css">
 	
 
-	<style>
-		.theQuestion{
-			height: 100vh;
-			width: 100%;
-			overflow: hidden;
-		}
-		.theQuestion .questItem{
-			width: 100%;
-			height: 100vh;
-			display: flex;
-  			align-items: center;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/slick.js"></script>
 </head>
 <body>
 
 	<div class="theQuestion">
+
+
+		<div class="questItem bg1">
+					<div class="row h-100 justify-content-center align-items-center">
+						<div class="col-md-12">
+							<div class="container">
+					
+							<h2 class="mb-3" id="verdict">j</h2>
+							<div class="row">
+								<div class="col-md-6 btnOption" data-qid="330" data-val="2" data-letter="A">
+									<div class="card p-3 mb-3">
+										A. 2
+									</div>
+								</div><div class="col-md-6 btnOption" data-qid="330" data-val="1" data-letter="B">
+									<div class="card p-3 mb-3">
+										B. 1
+									</div>
+								</div><div class="col-md-6 btnOption" data-qid="330" data-val="6" data-letter="C">
+									<div class="card p-3 mb-3">
+										C. 6
+									</div>
+								</div><div class="col-md-6 btnOption" data-qid="330" data-val="3" data-letter="D">
+									<div class="card p-3 mb-3">
+										D. 3
+									</div>
+								</div>
+							</div>
+								<div class="btnNextCon text-center">
+									<button class="mybtn btnNext btnRip">next</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 		
 	</div>
 	
@@ -57,11 +81,12 @@
 			{id:328,q:'h',o:['8','4','1','3'],a:'1'},
 			{id:329,q:'i',o:['9','3','2','2'],a:'2'},
 			{id:330,q:'j',o:['1','2','6','3'],a:'3'},
-			{id:331,q:'k',o:['2','3','7','4'],a:'1'},
+			{id:331,q:'k',o:['2','3','7','4'],a:'3'},
 		]
 		var numSelQuest = 5;
 		var selQuest = [];
 		var userAns = [];
+		var checkAns = [];
 		var shuffles = questions.sort(() => Math.random() - 0.5);
 
 		shuffles.forEach(function(value, index){
@@ -73,22 +98,52 @@
 
 
 		//console.log(selQuest);
+		var selQuestLen = selQuest.length - 1;
 		selQuest.forEach(function(i, index){
 			var rawoptions = i['o'].sort(() => Math.random() - 0.5);
 
 			var option = "";
 			var button = "";
 			rawoptions.forEach(function(item,idx){
-				var letter = ["a","b","c","d"]
-				option += `<div class="col-md-6" data-qid='${i['id']}' data-val='${item}' data-letter='${letter[idx]}'>${letter[idx]}. ${item}</div>`;
-			});
-			var template = `<div class="questItem d-none">
-				<div class="container">
-					<h2>${i['q']}</h2>
-					<div class="row">
-						${option}
+				var letter = ["A","B","C","D"];
+				option += `<div class="col-md-6 btnOption" data-qid='${i['id']}' data-val='${item}' data-letter='${letter[idx]}'>
+					<div class="card p-3 mb-3">
+						${letter[idx]}. ${item}
 					</div>
-					<div class="btnNextCon"><button class="btnNext">next</button></div>
+				</div>`;
+			});
+
+			var operationBtn = '';
+
+			if (index == 0) {
+				operationBtn = `<div class="btnNextCon text-center">
+									<button class="mybtn btnNext btnRip">next</button>
+								</div>`;
+			}else if(selQuestLen == index){
+				operationBtn = `<div class="btnNextCon d-flex">
+									<button class="mybtn btnPrev btnRip">back</button>
+									<button class="mybtn btnDone btnRip ml-auto">finish</button>
+								</div>`;
+			}else{
+				operationBtn = `<div class="btnNextCon d-flex">
+									<button class="mybtn btnPrev btnRip">Back</button>
+									<button class="mybtn btnNext btnRip ml-auto">Next</button>
+								</div>`;
+			}
+			var bgColor = ["bg1","bg2","bg3","bg4","bg5"]
+			var ranBGColor = bgColor.sort(() => Math.random() - 0.5);
+			var template = `<div class="questItem ${ranBGColor[index]}">
+					<div class="row h-100 justify-content-center align-items-center">
+						<div class="col-md-12">
+							<div class="container">
+					
+							<h2 class="mb-3">${i['q']}</h2>
+							<div class="row">
+								${option}
+							</div>
+								${operationBtn}
+							</div>
+						</div>
 					</div>
 				</div>`;
 			$('.theQuestion').append(template);
@@ -98,8 +153,9 @@
 		$(function(){
 
 
-			$('.questItem .btnOpt').click(function(){
-
+			$('.btnOption').click(function(){
+				$(this).parent().find('.btnOption').removeClass('selected')
+				$(this).addClass('selected');
 				var getid = $(this).data('qid');
 				var getval = $(this).data('val');
 				var getltr = $(this).data('letter');
@@ -123,18 +179,35 @@
 
 			});
 
-
-			$('.theQuestion .questItem:last-child .btnNext').click(function(){
-				console.log(userAns)
+			$('.theQuestion').slick({
+			    accessibility: false,
+			   	infinite: false,
+			   	arrows: false,
+			   	draggable:false
 			});
 
+			$('.btnNext').click(function(){
+				$('.theQuestion').slick('slickNext');
+			});
+			
+			$('.btnPrev').click(function(){
+				$('.theQuestion').slick('slickPrev');
+			});
 
-			$('.theQuestion .questItem:first-child').removeClass('d-none').addClass('active');
+			$('.btnDone').click(function(){
+				questions.forEach(function(val, idx){
+					userAns.forEach(function(v,i){
+						if (v['qid'] == val['id']) {
+							if (v['ans'] == val['a'] ) {
+								checkAns.push({qid:v['qid'], anslet: v['let'], ansval: v['ans'], verdict: 'correct'})
+							}else{
+								checkAns.push({qid:v['qid'], anslet: v['let'], ansval: v['ans'], verdict: 'wrong'})
+							}
+						}
+					})
+				});
 
-			$('.theQuestion .questItem .btnNext').click(function(){
-				var activeElement = $('.theQuestion .questItem.active');
-				$('.theQuestion .questItem.active').next().addClass("active").removeClass('d-none');
-				activeElement.removeClass('active').addClass('d-none');
+				console.log(checkAns);
 			});
 
 
