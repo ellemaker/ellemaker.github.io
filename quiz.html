@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test</title>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	
+
+	<style>
+		.theQuestion{
+			height: 100vh;
+			width: 100%;
+			overflow: hidden;
+		}
+		.theQuestion .questItem{
+			width: 100%;
+			height: 100vh;
+			display: flex;
+  			align-items: center;
+		}
+	</style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="theQuestion">
+		
+	</div>
+	
+
+	<script>
+		//https://tympanus.net/Tutorials/CSSButtonsPseudoElements/index2.html#
+		//https://keyboard-keys-demo-avsboucyiw.now.sh/
+		function shuffleArray(array) {
+			console.log(array.length)
+		    for (var i = array.length - 1; i > 0; i--) {
+		        	for (var i = array.length - 1; i > 0; i--) {
+			        	var j = Math.floor(Math.random() * (i + 1));
+			        	var temp = array[i];
+			        	array[i] = array[j];
+			        	array[j] = temp;
+			    	}
+		    }
+		}
+
+
+		var questions = [
+			{id:321,q:'a',o:['1','2','3','4'],a:'3'},
+			{id:322,q:'b',o:['2','3','5','8'],a:'5'},
+			{id:323,q:'c',o:['3','2','4','9'],a:'4'},
+			{id:324,q:'d',o:['4','9','5','7'],a:'9'},
+			{id:325,q:'e',o:['5','6','7','8'],a:'8'},
+			{id:326,q:'f',o:['6','8','9','5'],a:'5'},
+			{id:327,q:'g',o:['7','9','6','4'],a:'4'},
+			{id:328,q:'h',o:['8','4','1','3'],a:'1'},
+			{id:329,q:'i',o:['9','3','2','2'],a:'2'},
+			{id:330,q:'j',o:['1','2','6','3'],a:'3'},
+			{id:331,q:'k',o:['2','3','7','4'],a:'1'},
+		]
+		var numSelQuest = 5;
+		var selQuest = [];
+		var userAns = [];
+		var shuffles = questions.sort(() => Math.random() - 0.5);
+
+		shuffles.forEach(function(value, index){
+			if (index < 5) {
+				selQuest.push(value)
+			}
+		});
+
+
+
+		//console.log(selQuest);
+		selQuest.forEach(function(i, index){
+			var rawoptions = i['o'].sort(() => Math.random() - 0.5);
+
+			var option = "";
+			var button = "";
+			rawoptions.forEach(function(item,idx){
+				var letter = ["a","b","c","d"]
+				option += "<li>"+letter[idx]+". " +item+ "</li>";
+				button += `<button class='btnOpt' data-qid='${i['id']}' data-val='${item}' data-letter='${letter[idx]}'>${letter[idx]}</button>`
+			});
+			var template = `<div class="questItem d-none">
+				<div class="container">
+					<h2>${i['q']}</h2>
+					<ul>
+						${option}
+					</ul>
+					<div class='btnOption'>
+						${button}
+						
+					</div>
+					<div class="btnNextCon"><button class="btnNext">next</button></div>
+					</div>
+				</div>`;
+			$('.theQuestion').append(template);
+		});
+
+
+		$(function(){
+
+
+			$('.questItem .btnOpt').click(function(){
+
+				var getid = $(this).data('qid');
+				var getval = $(this).data('val');
+				var getltr = $(this).data('letter');
+				var checkId = false;
+
+				if (userAns.length > 0) {
+					userAns.forEach(function(itm, idx){
+						if(itm['qid'] == getid){
+							checkId = true;
+						}
+					});
+				}
+
+				if (checkId) {
+					objIndex = userAns.findIndex((obj => obj.qid == getid));
+					userAns[objIndex].ans = getval;
+					userAns[objIndex].let = getltr;
+				}else{
+					userAns.push({qid: getid, ans: getval, let: getltr})
+				}
+
+			});
+
+
+			$('.theQuestion .questItem:last-child .btnNext').click(function(){
+				console.log(userAns)
+			});
+
+
+			$('.theQuestion .questItem:first-child').removeClass('d-none').addClass('active');
+
+			$('.theQuestion .questItem .btnNext').click(function(){
+				var activeElement = $('.theQuestion .questItem.active');
+				$('.theQuestion .questItem.active').next().addClass("active").removeClass('d-none');
+				activeElement.removeClass('active').addClass('d-none');
+			});
+
+
+		});
+
+
+
+
+
+
+
+	</script>
+</body>
+</html>

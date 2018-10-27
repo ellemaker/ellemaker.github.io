@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/fancybox.css">
+	<link rel="stylesheet" href="css/slick.css">
+	<link rel="stylesheet" href="css/style.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="particles-js" class="frontbg"></div>
+	<div class="cont">
+	  
+	  <div class="item vertical-center frontContent">
+	  		<div class="row h-100 justify-content-center align-items-center">
+	  			<div class="col-md-12 text-center">
+	  				<h1>I/O Quiz</h1>
+	  				<button class="btnNxt btnPrm hvr-sweep-to-top">Get Started</button>
+	  			</div>
+
+	  		</div>
+	  </div>
+	  <div class="item vertical-center frontContent">
+	  		<div class="row h-100 justify-content-center align-items-center">
+	  			<div class="col-md-12 text-center">
+	  				<div class="container text-left">
+		  				<h2>Read the instructions</h2>
+		  				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi amet quae delectus earum, rerum mollitia blanditiis vero sint aliquam exercitationem ut et, ratione assumenda aspernatur perspiciatis. Itaque illo sapiente omnis.</p>
+		  				<ul>
+		  					<li>Lorem ipsum dolor.</li>
+		  					<li>Lorem ipsum dolor.</li>
+		  					<li>Lorem ipsum dolor.</li>
+		  				</ul>
+	  				</div>
+	  				<a class="btnPrm hvr-sweep-to-top mr-3" href="https://vimeo.com/191947042" data-fancybox="">Watch a video</a>
+	  				<a class="btnPrm hvr-sweep-to-top" href="quiz.html">Start Now</a>
+	  			</div>
+
+	  		</div>
+	  </div>
+
+
+	  
+	</div>
+
+	<script type="text/javascript" src="js/slick.js"></script>
+	<script type="text/javascript" src="js/particles.js" ></script>
+	<script type="text/javascript" src="js/init-particles.js"></script>
+	<script type="text/javascript" src="js/fancybox.js"></script>
+	<script>
+		
+		$(function(){
+			$('.cont').slick({
+			    accessibility: false,
+			   	infinite: false,
+			   	arrows: false,
+			   	draggable:false
+			});
+
+			$('.btnNxt').click(function(){
+				$('.cont').slick('slickNext');
+			});
+			$('.btnPrv').click(function(){
+				$('.cont').slick('slickPrev');
+			})
+		});
+	</script>
+</body>
+</html>
