@@ -100,7 +100,24 @@ button:hover,button:active,button:focus{
 	height: 100vh;
 }
 
-
+.mybtn{
+      padding: 10px 40px;
+    border-radius: 40px;
+    border: #fff;
+    box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,.1), 0 0.9375rem 1.40625rem rgba(90,97,105,.1), 0 0.25rem 0.53125rem rgba(90,97,105,.12), 0 0.125rem 0.1875rem rgba(90,97,105,.1);
+    color: #fff;
+        text-transform: uppercase;
+    font-size: 20px;
+}
+.btnNext{
+  background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
+}
+.btnPrev{
+  background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
+}
+.btnDone{
+  background-image: linear-gradient(-225deg, #65379B 0%, #886AEA 53%, #6457C6 100%);
+}
 .theQuestion{
   height: 100vh;
   width: 100%;

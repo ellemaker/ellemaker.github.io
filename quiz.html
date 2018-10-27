@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Test</title>
+	<title>I/O Quiz</title>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="css/slick.css">
+	<link rel="stylesheet" type="text/css" href="css/ripple.css">
 	
 
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -31,10 +32,10 @@
 		
 	</div>
 	
-
+	<script src="js/sweetalert.js"></script>
+	<script src="js/ripple.js"></script>
+	<script src="js/q.js"></script>
 	<script>
-		//https://tympanus.net/Tutorials/CSSButtonsPseudoElements/index2.html#
-		//https://keyboard-keys-demo-avsboucyiw.now.sh/
 		function shuffleArray(array) {
 			console.log(array.length)
 		    for (var i = array.length - 1; i > 0; i--) {
@@ -46,21 +47,7 @@
 			    	}
 		    }
 		}
-
-
-		var questions = [
-			{id:321,q:'a',o:['1','2','3','4'],a:'3'},
-			{id:322,q:'b',o:['2','3','5','8'],a:'5'},
-			{id:323,q:'c',o:['3','2','4','9'],a:'4'},
-			{id:324,q:'d',o:['4','9','5','7'],a:'9'},
-			{id:325,q:'e',o:['5','6','7','8'],a:'8'},
-			{id:326,q:'f',o:['6','8','9','5'],a:'5'},
-			{id:327,q:'g',o:['7','9','6','4'],a:'4'},
-			{id:328,q:'h',o:['8','4','1','3'],a:'1'},
-			{id:329,q:'i',o:['9','3','2','2'],a:'2'},
-			{id:330,q:'j',o:['1','2','6','3'],a:'3'},
-			{id:331,q:'k',o:['2','3','7','4'],a:'3'},
-		]
+		
 		var numSelQuest = 5;
 		var selQuest = [];
 		var userAns = [];
@@ -86,7 +73,7 @@
 			rawoptions.forEach(function(item,idx){
 				var letter = ["A","B","C","D"];
 				option += `<div class="col-md-6 btnOption" data-qid='${i['id']}' data-val='${item}' data-letter='${letter[idx]}'>
-					<div class="card p-3 mb-3">
+					<div class="card p-3 mb-3 btnRip">
 						${letter[idx]}. ${item}
 					</div>
 				</div>`;
@@ -172,8 +159,7 @@
 				if (haveAns > 0) {
 					$('.theQuestion').slick('slickNext');
 				}else{
-					
-					
+					swal("Warning", "Please choose your answer.", "warning");
 				}
 				
 			});
@@ -209,6 +195,25 @@
 
 				$('.theQuestion').slick('slickNext');
 				
+			});
+
+
+			$.ripple(".btnRip", {
+				debug: false, // Turn Ripple.js logging on/off
+				on: 'mousedown', // The event to trigger a ripple effect
+
+				opacity: 0.4, // The opacity of the ripple
+				color: "auto", // Set the background color. If set to "auto", it will use the text color
+				multi: false, // Allow multiple ripples per element
+
+				duration: 0.7, // The duration of the ripple
+
+				// Filter function for modifying the speed of the ripple
+				rate: function(pxPerSecond) {
+			        return pxPerSecond;
+			    },
+
+				easing: 'linear' // The CSS3 easing function of the ripple
 			});
 
 
