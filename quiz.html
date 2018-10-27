@@ -80,18 +80,13 @@
 			var button = "";
 			rawoptions.forEach(function(item,idx){
 				var letter = ["a","b","c","d"]
-				option += "<li>"+letter[idx]+". " +item+ "</li>";
-				button += `<button class='btnOpt' data-qid='${i['id']}' data-val='${item}' data-letter='${letter[idx]}'>${letter[idx]}</button>`
+				option += `<div class="col-md-6" data-qid='${i['id']}' data-val='${item}' data-letter='${letter[idx]}'>${letter[idx]}. ${item}</div>`;
 			});
 			var template = `<div class="questItem d-none">
 				<div class="container">
 					<h2>${i['q']}</h2>
-					<ul>
+					<div class="row">
 						${option}
-					</ul>
-					<div class='btnOption'>
-						${button}
-						
 					</div>
 					<div class="btnNextCon"><button class="btnNext">next</button></div>
 					</div>
