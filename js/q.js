@@ -1,13 +1,137 @@
 var questions = [
-	{id:321,q:'a',o:['1','2','3','4'],a:'3'},
-	{id:322,q:'b',o:['2','3','5','8'],a:'5'},
-	{id:323,q:'c',o:['3','2','4','9'],a:'4'},
-	{id:324,q:'d',o:['4','9','5','7'],a:'9'},
-	{id:325,q:'e',o:['5','6','7','8'],a:'8'},
-	{id:326,q:'f',o:['6','8','9','5'],a:'5'},
-	{id:327,q:'g',o:['7','9','6','4'],a:'4'},
-	{id:328,q:'h',o:['8','4','1','3'],a:'1'},
-	{id:329,q:'i',o:['9','3','2','2'],a:'2'},
-	{id:330,q:'j',o:['1','2','6','3'],a:'3'},
-	{id:331,q:'k',o:['2','3','7','4'],a:'3'},
+	{
+		id:321,
+		q:'An input device allows your computer to communicate with your computer',
+		o:['True','False'],
+		a:'True'
+	},
+	{
+		id:322,
+		q:'A storage device allows you to store and retrieve information',
+		o:['True','False'],
+		a:'True'
+	},
+	{
+		id:323,
+		q:'contains a collection of letters, numbers, and special symbols you can use to enter information.',
+		o:['Keyboard','Typewriter','IPad','Trackball'],
+		a:'Keyboard'
+	},
+	{
+		id:324,
+		q:'are hand-held devices you can use them to select and move information around the computer screen and to give commands.',
+		o:['Keyboard','Light pen','Mouse and trackball','Touchpad'],
+		a:'Mouse and trackball'
+	},
+	{
+		id:325,
+		q:'If Mae wants to capture sound on her computer, she would need a',
+		o:['keyboard','webcam','headphones','microphone'],
+		a:'microphone'
+	},
+	{
+		id:326,
+		q:'Which hardware is used to input data signals to a computer by touching a monitor?',
+		o:['Mouse','Audio input','Video input','Speaker'],
+		a:'Mouse'
+	},
+	{
+		id:327,
+		q:'Monitor/Screen',
+		o:['Input','Output','Processing','Storage'],
+		a:'Output'
+	},
+	{
+		id:328,
+		q:'Speakers',
+		o:['Input','Output','Processing','Storage'],
+		a:'Output'
+	},
+	{
+		id:329,
+		q:'Web Cam',
+		o:['Input','Output','Processing','Storage'],
+		a:'Input'
+	},
+	{
+		id:330,
+		q:'Printer',
+		o:['Input','Output','Processing','Storage'],
+		a:'Output'
+	},
+	{
+		id:331,
+		q:'Keyboard',
+		o:['Input','Output','Processing','Storage'],
+		a:'Input'
+	},
+	{
+		id:400,
+		q:'Mouse',
+		o:['Input','Output','Processing','Storage'],
+		a:'Input'
+	},
+	{
+		id:401,
+		q:'Hard Drive',
+		o:['Input','Output','Processing','Storage'],
+		a:'Storage'
+	},
+	{
+		id:402,
+		q:'CD-Rom',
+		o:['Input','Output','Processing','Storage'],
+		a:'Storage'
+	},
+	{
+		id:403,
+		q:'USB Key',
+		o:['Input','Output','Processing','Storage'],
+		a:'Input'
+	},
+	{
+		id:404,
+		q:'Scanner',
+		o:['Input','Output','Processing','Storage'],
+		a:'Input'
+	},
+	{
+		id:405,
+		q:'Scanner',
+		o:['Input','Output','Processing','Storage'],
+		a:'Input'
+	},
+	{
+		id:406,
+		q:'Floppy Disk',
+		o:['Input','Output','Processing','Storage'],
+		a:'Storage'
+	},
+	{
+		id:407,
+		q:'C.P.U. (Central Processing Unit)',
+		o:['Input','Output','Processing','Storage'],
+		a:'Processing'
+	},
+	{
+		id:408,
+		q:'Computer Processor',
+		o:['Input','Output','Processing','Storage'],
+		a:'Processing'
+	},
+	{
+		id:409,
+		q:'CD/DVD Drive',
+		o:['Input','Output','Processing','Storage'],
+		a:'Storage'
+	},
+	{
+		id:410,
+		q:'RAM',
+		o:['Input','Output','Processing','Storage'],
+		a:'Storage'
+	},
+
+
+
 ]
