@@ -13,19 +13,19 @@ var questions = [
 	},
 	{
 		id:323,
-		q:'contains a collection of letters, numbers, and special symbols you can use to enter information.',
+		q:'<span class="blank"></span> contains a collection of letters, numbers, and special symbols you can use to enter information.',
 		o:['Keyboard','Typewriter','IPad','Trackball'],
 		a:'Keyboard'
 	},
 	{
 		id:324,
-		q:'are hand-held devices you can use them to select and move information around the computer screen and to give commands.',
+		q:'<span class="blank"></span> are hand-held devices you can use them to select and move information around the computer screen and to give commands.',
 		o:['Keyboard','Light pen','Mouse and trackball','Touchpad'],
 		a:'Mouse and trackball'
 	},
 	{
 		id:325,
-		q:'If Mae wants to capture sound on her computer, she would need a',
+		q:'If Mae wants to capture sound on her computer, she would need a <span class="blank"></span> ',
 		o:['keyboard','webcam','headphones','microphone'],
 		a:'microphone'
 	},
