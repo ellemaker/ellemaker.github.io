@@ -21,31 +21,9 @@
 		<div class="questItem bg1">
 					<div class="row h-100 justify-content-center align-items-center">
 						<div class="col-md-12">
-							<div class="container">
-					
-							<h2 class="mb-3" id="verdict">j</h2>
-							<div class="row">
-								<div class="col-md-6 btnOption" data-qid="330" data-val="2" data-letter="A">
-									<div class="card p-3 mb-3">
-										A. 2
-									</div>
-								</div><div class="col-md-6 btnOption" data-qid="330" data-val="1" data-letter="B">
-									<div class="card p-3 mb-3">
-										B. 1
-									</div>
-								</div><div class="col-md-6 btnOption" data-qid="330" data-val="6" data-letter="C">
-									<div class="card p-3 mb-3">
-										C. 6
-									</div>
-								</div><div class="col-md-6 btnOption" data-qid="330" data-val="3" data-letter="D">
-									<div class="card p-3 mb-3">
-										D. 3
-									</div>
-								</div>
-							</div>
-								<div class="btnNextCon text-center">
-									<button class="mybtn btnNext btnRip">next</button>
-								</div>
+							<div class="container" id="summary">
+								<h2 class="verdict"></h2>
+								<div class="sumConent"></div>
 							</div>
 						</div>
 					</div>
@@ -87,6 +65,7 @@
 		var selQuest = [];
 		var userAns = [];
 		var checkAns = [];
+		var wrongAns = [];
 		var shuffles = questions.sort(() => Math.random() - 0.5);
 
 		shuffles.forEach(function(value, index){
@@ -116,13 +95,14 @@
 			var operationBtn = '';
 
 			if (index == 0) {
-				operationBtn = `<div class="btnNextCon text-center">
-									<button class="mybtn btnNext btnRip">next</button>
-								</div>`;
-			}else if(selQuestLen == index){
+				
 				operationBtn = `<div class="btnNextCon d-flex">
 									<button class="mybtn btnPrev btnRip">back</button>
 									<button class="mybtn btnDone btnRip ml-auto">finish</button>
+								</div>`;
+			}else if(selQuestLen == index){
+				operationBtn = `<div class="btnNextCon text-center">
+									<button class="mybtn btnNext btnRip">next</button>
 								</div>`;
 			}else{
 				operationBtn = `<div class="btnNextCon d-flex">
@@ -146,7 +126,7 @@
 						</div>
 					</div>
 				</div>`;
-			$('.theQuestion').append(template);
+			$('.theQuestion').prepend(template);
 		});
 
 
@@ -199,15 +179,25 @@
 					userAns.forEach(function(v,i){
 						if (v['qid'] == val['id']) {
 							if (v['ans'] == val['a'] ) {
-								checkAns.push({qid:v['qid'], anslet: v['let'], ansval: v['ans'], verdict: 'correct'})
+								checkAns.push({qid:v['qid'],q:val['q'], anslet: v['let'], ansval: v['ans'], verdict: 'correct'})
 							}else{
-								checkAns.push({qid:v['qid'], anslet: v['let'], ansval: v['ans'], verdict: 'wrong'})
+								wrongAns.push({qid:v['qid'],q:val['q'], anslet: v['let'], ansval: v['ans'], verdict: 'wrong'})
 							}
 						}
 					})
 				});
 
-				console.log(checkAns);
+				var getNoOfCheck = checkAns.length;
+
+				$('#summary h2').text('You got a score of ' + getNoOfCheck + ' out of ' + numSelQuest);
+				var sumContent = '';
+				checkAns.forEach(function(val, index){
+					sumContent += `<p>${val['q']}</p> <p>Your Answer : ${val['ansval']}</p>`;
+				});	
+				$('#summary .sumConent').html(sumContent);
+
+				$('.theQuestion').slick('slickNext');
+				
 			});
 
 
