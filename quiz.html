@@ -18,16 +18,16 @@
 	<div class="theQuestion">
 
 
-		<div class="questItem bg1">
-					<div class="row h-100 justify-content-center align-items-center">
-						<div class="col-md-12">
-							<div class="container" id="summary">
-								<h2 class="verdict"></h2>
-								<div class="sumConent"></div>
-							</div>
-						</div>
+		<div class="questItem bg3">
+			<div class="row h-100 justify-content-center align-items-center">
+				<div class="col-md-12">
+					<div class="container" id="summary">
+						<h2 class="verdict"></h2>
+						<div class="sumConent"></div>
 					</div>
 				</div>
+			</div>
+		</div>
 		
 	</div>
 	
@@ -134,8 +134,9 @@
 
 
 			$('.btnOption').click(function(){
-				$(this).parent().find('.btnOption').removeClass('selected')
-				$(this).addClass('selected');
+				$(this).parent().find('.card').removeClass('selected');
+				$(this).parent().find('.btnOption').removeClass('selectedOption');
+				$(this).addClass('selectedOption').find('.card').addClass('selected');
 				var getid = $(this).data('qid');
 				var getval = $(this).data('val');
 				var getltr = $(this).data('letter');
@@ -167,7 +168,14 @@
 			});
 
 			$('.btnNext').click(function(){
-				$('.theQuestion').slick('slickNext');
+				var haveAns = $(this).parent().parent().find('.row .btnOption.selectedOption').length;
+				if (haveAns > 0) {
+					$('.theQuestion').slick('slickNext');
+				}else{
+					
+					
+				}
+				
 			});
 			
 			$('.btnPrev').click(function(){
@@ -181,7 +189,7 @@
 							if (v['ans'] == val['a'] ) {
 								checkAns.push({qid:v['qid'],q:val['q'], anslet: v['let'], ansval: v['ans'], verdict: 'correct'})
 							}else{
-								wrongAns.push({qid:v['qid'],q:val['q'], anslet: v['let'], ansval: v['ans'], verdict: 'wrong'})
+								wrongAns.push({qid:v['qid'],q:val['q'], anslet: v['let'], ansval: v['ans'], correctans:val['a'], verdict: 'wrong'})
 							}
 						}
 					})
@@ -192,8 +200,11 @@
 				$('#summary h2').text('You got a score of ' + getNoOfCheck + ' out of ' + numSelQuest);
 				var sumContent = '';
 				checkAns.forEach(function(val, index){
-					sumContent += `<p>${val['q']}</p> <p>Your Answer : ${val['ansval']}</p>`;
+					sumContent += `<p>${val['q']}</p> <p>Your Answer : ${val['ansval']} - Correct</p>`;
 				});	
+				wrongAns.forEach(function(val, index){
+					sumContent += `<p>${val['q']}</p> <p>Your Answer : ${val['ansval']}</p> <p>Correct Answer : ${val['correctans']}</p>`;
+				})
 				$('#summary .sumConent').html(sumContent);
 
 				$('.theQuestion').slick('slickNext');

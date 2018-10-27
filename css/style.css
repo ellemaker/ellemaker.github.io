@@ -120,6 +120,12 @@ button:hover,button:active,button:focus{
     box-shadow: 0 0.46875rem 2.1875rem rgba(90,97,105,.1), 0 0.9375rem 1.40625rem rgba(90,97,105,.1), 0 0.25rem 0.53125rem rgba(90,97,105,.12), 0 0.125rem 0.1875rem rgba(90,97,105,.1);
     color: #212529;
 }
+.theQuestion .card.selected{
+  background: #4CAF50;
+  color: #fff;
+}
+
+
 .bg1{background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);}
 .bg2{background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);}
 .bg3{background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);}
