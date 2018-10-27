@@ -5,6 +5,7 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/fancybox.css">
+	<link rel="stylesheet" type="text/css" href="css/ripple.css">
 	<link rel="stylesheet" href="css/slick.css">
 	<link rel="stylesheet" href="css/style.css">
 	
@@ -18,7 +19,7 @@
 	  		<div class="row h-100 justify-content-center align-items-center">
 	  			<div class="col-md-12 text-center">
 	  				<h1>I/O Quiz</h1>
-	  				<button class="btnNxt btnPrm hvr-sweep-to-top">Get Started</button>
+	  				<button class="btnNxt btnPrm">Get Started</button>
 	  			</div>
 
 	  		</div>
@@ -35,8 +36,8 @@
 		  					<li>Lorem ipsum dolor.</li>
 		  				</ul>
 	  				</div>
-	  				<a class="btnPrm hvr-sweep-to-top mr-3" href="https://vimeo.com/191947042" data-fancybox="">Watch a video</a>
-	  				<a class="btnPrm hvr-sweep-to-top" href="quiz.html">Start Now</a>
+	  				<a class="btnPrm mr-3" href="https://vimeo.com/191947042" data-fancybox="">Watch a video</a>
+	  				<a class="btnPrm" href="quiz.html">Start Now</a>
 	  			</div>
 
 	  		</div>
@@ -50,6 +51,7 @@
 	<script type="text/javascript" src="js/particles.js" ></script>
 	<script type="text/javascript" src="js/init-particles.js"></script>
 	<script type="text/javascript" src="js/fancybox.js"></script>
+	<script src="js/ripple.js"></script>
 	<script>
 		
 		$(function(){
@@ -66,6 +68,24 @@
 			$('.btnPrv').click(function(){
 				$('.cont').slick('slickPrev');
 			})
+
+			$.ripple(".btnPrm", {
+				debug: false, // Turn Ripple.js logging on/off
+				on: 'mousedown', // The event to trigger a ripple effect
+
+				opacity: 0.4, // The opacity of the ripple
+				color: "auto", // Set the background color. If set to "auto", it will use the text color
+				multi: false, // Allow multiple ripples per element
+
+				duration: 0.7, // The duration of the ripple
+
+				// Filter function for modifying the speed of the ripple
+				rate: function(pxPerSecond) {
+			        return pxPerSecond;
+			    },
+
+				easing: 'linear' // The CSS3 easing function of the ripple
+			});
 		});
 	</script>
 </body>
