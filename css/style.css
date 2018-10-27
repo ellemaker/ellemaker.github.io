@@ -142,7 +142,11 @@ button:hover,button:active,button:focus{
   color: #fff;
 }
 
-
+.blank{
+    display: inline-block;
+    border-bottom: 1px solid #fff;
+    width: 120px;
+}
 .bg1{background-image: linear-gradient(to top, #fdcbf1 0%, #fdcbf1 1%, #e6dee9 100%);}
 .bg2{background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);}
 .bg3{background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);}
