@@ -36,17 +36,6 @@
 	<script src="js/ripple.js"></script>
 	<script src="js/q.js"></script>
 	<script>
-		function shuffleArray(array) {
-			console.log(array.length)
-		    for (var i = array.length - 1; i > 0; i--) {
-		        	for (var i = array.length - 1; i > 0; i--) {
-			        	var j = Math.floor(Math.random() * (i + 1));
-			        	var temp = array[i];
-			        	array[i] = array[j];
-			        	array[j] = temp;
-			    	}
-		    }
-		}
 		
 		var numSelQuest = 5;
 		var selQuest = [];
@@ -60,10 +49,7 @@
 				selQuest.push(value)
 			}
 		});
-
-
-
-		//console.log(selQuest);
+		
 		var selQuestLen = selQuest.length - 1;
 		selQuest.forEach(function(i, index){
 			var rawoptions = i['o'].sort(() => Math.random() - 0.5);
@@ -219,13 +205,6 @@
 
 
 		});
-
-
-
-
-
-
-
 	</script>
 </body>
 </html>
