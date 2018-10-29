@@ -42,7 +42,7 @@
 		var shuffles = questions.sort(() => Math.random() - 0.5);
 
 		shuffles.forEach(function(value, index){
-			if (index < 5) {
+			if (index < numSelQuest) {
 				selQuest.push(value)
 			}
 		});
