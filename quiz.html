@@ -32,23 +32,42 @@
 	<script src="js/sweetalert.js"></script>
 	<script src="js/ripple.js"></script>
 	<script src="js/q.js"></script>
+
 	<script>
-		
-		var numSelQuest = 5;
-		var selQuest = [];
+
+		var the_question;
+		var the_currentSlide; 
 		var userAns = [];
 		var checkAns = [];
 		var wrongAns = [];
-		var shuffles = questions.sort(() => Math.random() - 0.5);
 
-		shuffles.forEach(function(value, index){
-			if (index < numSelQuest) {
-				selQuest.push(value)
-			}
-		});
-		
-		var selQuestLen = selQuest.length - 1;
-		selQuest.forEach(function(i, index){
+		if (localStorage.getItem("sq")) {
+			the_question = JSON.parse(localStorage.getItem("sq"));
+		}else{
+			var numSelQuest = 5;
+			var selQuest = [];
+			var shuffles = questions.sort(() => Math.random() - 0.5);
+
+			shuffles.forEach(function(value, index){
+				if (index < numSelQuest) {
+					selQuest.push(value)
+				}
+			});
+
+			localStorage.setItem("sq", JSON.stringify(selQuest));
+
+			the_question = JSON.parse(localStorage.getItem("sq"));
+		}
+
+		if (localStorage.getItem("currentSlide")) {
+			the_currentSlide = +localStorage.getItem('currentSlide');
+		}else{
+			localStorage.setItem("currentSlide", 0);
+			the_currentSlide = 0;
+		}
+
+		var selQuestLen = the_question.length - 1;
+		the_question.forEach(function(i, index){
 			var rawoptions = i['o'].sort(() => Math.random() - 0.5);
 
 			var option = "";
@@ -130,12 +149,15 @@
 
 			});
 
+			console.log(' cuurent ' + the_currentSlide);
+
 			$('.theQuestion').slick({
 			    accessibility: false,
 			   	infinite: false,
 			   	arrows: false,
 			   	draggable:false,
-				swipe : false
+				swipe : false,
+				initialSlide : the_currentSlide
 			});
 
 			$('.btnNext').click(function(){
@@ -145,11 +167,15 @@
 				}else{
 					swal("Warning", "Please choose your answer.", "warning");
 				}
-				
+				var getSlideCurrentIndex = $('.slick-list .slick-active').data('slick-index');
+				localStorage.setItem("currentSlide", getSlideCurrentIndex);
 			});
 			
 			$('.btnPrev').click(function(){
 				$('.theQuestion').slick('slickPrev');
+				var getSlideCurrentIndex = $('.slick-list .slick-active').data('slick-index');
+				localStorage.setItem("currentSlide", getSlideCurrentIndex);
+
 			});
 
 			$('.btnDone').click(function(){
